@@ -11,3 +11,124 @@
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dokumentation Praktikum SAP</title>
+    <script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        text-align: center;
+        background-color: white;
+      }
+      .day-button {
+        margin: 0.5rem;
+        font-weight: bold;
+      }
+      .logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .logos img {
+        height: 80px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+      }
+      .logos img:hover {
+        transform: scale(1.05);
+      }
+      ui5-button[design="Negative"] {
+        background-color: #fa9898;
+        color: black;
+      }
+      ui5-button[design="Emphasized"] {
+        background-color: #eaeaea;
+        color: black;
+      }
+      ui5-button[design="Default"] {
+        background-color: #d2e3fc;
+        color: black;
+      }
+      ui5-button[design="Positive"] {
+        background-color: #c3f9c8;
+        color: black;
+      }
+      ui5-button[design="Attention"] {
+        background-color: #fef3c0;
+        color: black;
+      }
+      ui5-button[design="Transparent"] {
+        background-color: #e7e0fd;
+        color: black;
+      }
+      .day-content {
+        display: none;
+        margin: 1rem auto;
+        max-width: 600px;
+        background-color: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #333;
+        text-align: left;
+      }
+      .day-content ul {
+        padding-left: 1.2rem;
+      }
+    </style>
+    <script>
+      function toggleContent(id) {
+        const content = document.getElementById(id);
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      }
+    </script>
+  </head>
+  <body>
+    <ui5-bar design="Header">
+      <ui5-avatar slot="startContent" icon="home" shape="Circle"></ui5-avatar>
+      <ui5-title level="H2">Dokumentation Praktikum SAP</ui5-title>
+    </ui5-bar>
+
+    <div class="logos">
+      <img src="https://openui5.org/images/ui5-logo.svg" alt="UI5 Logo" title="UI5 Logo" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" title="SAP Logo" />
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <ui5-button class="day-button" design="Negative" icon="calendar" onclick="toggleContent('content-montag')">Montag</ui5-button>
+      <div class="day-content" id="content-montag">Heute haben wir die SAP-Oberfläche kennengelernt und einfache Reports ausprobiert.</div>
+
+      <ui5-button class="day-button" design="Emphasized" icon="calendar" onclick="toggleContent('content-dienstag')">Dienstag</ui5-button>
+      <div class="day-content" id="content-dienstag">Wir haben gelernt, wie man Kundenstammdaten im SAP-System anlegt und pflegt.</div>
+
+      <ui5-button class="day-button" design="Default" icon="calendar" onclick="toggleContent('content-mittwoch')">Mittwoch</ui5-button>
+      <div class="day-content" id="content-mittwoch">Einblick in die Finanzbuchhaltung mit Buchungen und Berichten im System.</div>
+
+      <ui5-button class="day-button" design="Positive" icon="calendar" onclick="toggleContent('content-donnerstag')">Donnerstag</ui5-button>
+      <div class="day-content" id="content-donnerstag">Heute haben wir gemeinsam mit Auszubildenden an einem kleinen Projekt gearbeitet.</div>
+
+      <ui5-button class="day-button" design="Attention" icon="calendar" onclick="toggleContent('content-freitag')">Freitag</ui5-button>
+      <div class="day-content" id="content-freitag">Abschlussbesprechung, Feedback und Vorstellung der Ausbildungsmöglichkeiten bei SAP.</div>
+
+      <ui5-button class="day-button" design="Transparent" icon="education" onclick="toggleContent('content-ausbildung')">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
+      <div class="day-content" id="content-ausbildung">
+        <strong>SAP bietet zahlreiche Ausbildungsmöglichkeiten</strong> – von dualen Studiengängen über klassische Ausbildungen bis hin zu internationalen Trainee-Programmen.<br><br>
+        <strong>Bereiche sind z.B.:</strong>
+        <ul>
+          <li>Fachinformatik (Anwendungsentwicklung/Systemintegration)</li>
+          <li>Kaufleute für Digitalisierungsmanagement</li>
+          <li>Duales Studium: Wirtschaftsinformatik, BWL, Data Science</li>
+        </ul>
+        Weitere Infos unter: <a href="https://www.sap.com/germany/about/careers/students-graduates/vocational-training.html" target="_blank">SAP Ausbildung & Studium</a>
+      </div>
+    </div>
+  </body>
+</html>
