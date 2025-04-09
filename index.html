@@ -1,188 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dokumentation Praktikum SAP Als Entwickler </title>
+    <title>Dokumentation Praktikum SAP</title>
     <script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f6f9;
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
         margin: 0;
         padding: 0;
       }
-      header {
-        background-color: #0063b1;
+
+      ui5-bar {
+        background-color: #354a5f;
         color: white;
-        padding: 2rem;
-        text-align: center;
+        padding: 0.5rem;
       }
-      ui5-avatar {
-        margin-right: 1rem;
-      }
-      h1 {
-        font-size: 2.5rem;
-        margin: 0;
-      }
-      .logos {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
-        margin-top: 2rem;
-      }
-      .logos img {
-        height: 80px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .logos img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      }
-      .container {
-        padding: 2rem;
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 2rem;
-        justify-content: flex-start;
-        margin-top: 2rem;
-      }
-      .container div {
-        min-width: 300px;
-      }
-      ui5-button {
-        padding: 1rem;
-        font-size: 1.1rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        margin-bottom: 1rem;
+
+      .float-container {
         width: 100%;
-        cursor: pointer;
+        overflow: hidden;
+        padding: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
       }
-      ui5-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+      .float-box {
+        width: 300px;
+        min-height: 220px;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        box-sizing: border-box;
       }
+
+      .float-box:hover {
+        transform: scale(1.02);
+      }
+
+      /* Farben für die einzelnen Blöcke */
+      .block-montag { background-color: #fa9898; }
+      .block-dienstag { background-color: #eaeaea; }
+      .block-mittwoch { background-color: #d2e3fc; }
+      .block-donnerstag { background-color: #c3f9c8; }
+      .block-freitag { background-color: #fef3c0; }
+      .block-ausbildung { background-color: #e7e0fd; }
+
       .day-content {
         display: none;
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        transition: opacity 0.3s ease;
+        margin-top: 1rem;
+        text-align: left;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #333;
+      }
+
+      .day-content ul {
+        padding-left: 1.2rem;
+      }
+
+      ui5-button {
         width: 100%;
-      }
-      .day-content.active {
-        display: block;
-        opacity: 1;
+        font-weight: bold;
       }
 
-      /* Farben, die den UI5-Button Designs entsprechen */
-      .block-montag { background-color: #fa9898; } /* Negative (rot) */
-      .block-dienstag { background-color: #eaeaea; } /* Emphasized (grau) */
-      .block-mittwoch { background-color: #d2e3fc; } /* Default (blau) */
-      .block-donnerstag { background-color: #c3f9c8; } /* Positive (grün) */
-      .block-freitag { background-color: #fef3c0; } /* Attention (gelb) */
-      .block-ausbildung { background-color: #e7e0fd; } /* Transparent (lila) */
-       /* Button-Farben */
-       .block-montag button {
-        background-color: #fa9898;
-        color: #fa9898;
-      }
-      .block-dienstag button {
-        background-color: #eaeaea;
-        color: #eaeaea;
-      }
-      .block-mittwoch button {
-        background-color: #d2e3fc;
-        color: #d2e3fc
-      }
-      .block-donnerstag button {
-        background-color: #c3f9c8;
-        color: #c3f9c8;
-      }
-      .block-freitag button {
-        background-color: #fef3c0;
-        color: #fef3c0;
-      }
-      .block-ausbildung button {
-        background-color: #e7e0fd;
-        color: #e7e0fd;
-      }
-
-
-      .footer {
-        background-color: #f1f1f1;
-        padding: 1rem;
-        text-align: center;
-        font-size: 0.9rem;
-        color: #777;
-        margin-top: 3rem;
-      }
-      .footer a {
-        color: #0063b1;
-        text-decoration: none;
+      /* Responsive */
+      @media (max-width: 768px) {
+        .float-box {
+          width: 90%;
+        }
       }
     </style>
     <script>
-      function toggleContent(id, blockClass) {
-        const content = document.getElementById(id);
+      function toggleContent(idToShow) {
         const allContents = document.querySelectorAll('.day-content');
-        const allButtons = document.querySelectorAll('.container > div');
-        
-        // Alle anderen Inhalte ausblenden
-        allContents.forEach(content => content.classList.remove('active'));
-        allButtons.forEach(button => button.classList.remove('active-block'));
+        allContents.forEach(content => {
+          content.style.display = 'none';
+        });
 
-        // Den ausgewählten Inhalt anzeigen
-        content.classList.add('active');
-        const currentBlock = document.querySelector(`.${blockClass}`);
-        currentBlock.classList.add('active-block');
+        const show = document.getElementById(idToShow);
+        if (show) {
+          show.style.display = 'block';
+        }
       }
     </script>
   </head>
   <body>
-    <header>
-      <ui5-avatar icon="home" shape="Circle"></ui5-avatar>
-      <h1>Dokumentation Praktikum SAP</h1>
-    </header>
+    <ui5-bar design="Header">
+      <ui5-avatar slot="startContent" icon="home" shape="Circle"></ui5-avatar>
+      <ui5-title level="H2">Dokumentation Praktikum SAP</ui5-title>
+    </ui5-bar>
 
-    <div class="logos">
-      <img src="https://community.sap.com/legacyfs/online/storage/blog_attachments/2020/12/SAPUI5_orange_vertical.png" alt="UI5 Logo" />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
-    </div>
-
-    <div class="container">
-      <div class="block-montag">
-        <ui5-button design="Negative" icon="calendar" onclick="toggleContent('content-montag', 'block-montag')">Montag</ui5-button>
-        <div class="day-content" id="content-montag">Ich binan gekommen dann ging es zur security und dann zu meinem Arbeitsplatz. danach habe ich meinen laptopt eingerichtet und grundlagen im progammiren gemacht 
-
-      <div class="block-dienstag">
-        <ui5-button design="Emphasized" icon="calendar" onclick="toggleContent('content-dienstag', 'block-dienstag')">Dienstag</ui5-button>
-        <div class="day-content" id="content-dienstag"> Dienstag Habe ich angefangen diese website mit ui5-webcomponents zu progammiren </div>
+    <div class="float-container">
+      <div class="float-box block-montag">
+        <ui5-button design="Negative" icon="calendar" onclick="toggleContent('content-montag')">Montag</ui5-button>
+        <div class="day-content" id="content-montag"></div>
       </div>
 
-      <div class="block-mittwoch">
-        <ui5-button design="Default" icon="calendar" onclick="toggleContent('content-mittwoch', 'block-mittwoch')">Mittwoch</ui5-button>
-        <div class="day-content" id="content-mittwoch">m Mittwoch </div>
+      <div class="float-box block-dienstag">
+        <ui5-button design="Emphasized" icon="calendar" onclick="toggleContent('content-dienstag')">Dienstag</ui5-button>
+        <div class="day-content" id="content-dienstag"></div>
       </div>
 
-      <div class="block-donnerstag">
-        <ui5-button design="Positive" icon="calendar" onclick="toggleContent('content-donnerstag', 'block-donnerstag')">Donnerstag</ui5-button>
-        <div class="day-content" id="content-donnerstag">Donnerstag.</div>
+      <div class="float-box block-mittwoch">
+        <ui5-button design="Default" icon="calendar" onclick="toggleContent('content-mittwoch')">Mittwoch</ui5-button>
+        <div class="day-content" id="content-mittwoch"></div>
       </div>
 
-      <div class="block-freitag">
-        <ui5-button design="Attention" icon="calendar" onclick="toggleContent('content-freitag', 'block-freitag')">Freitag</ui5-button>
-        <div class="day-content" id="content-freitag">Freitag
+      <div class="float-box block-donnerstag">
+        <ui5-button design="Positive" icon="calendar" onclick="toggleContent('content-donnerstag')">Donnerstag</ui5-button>
+        <div class="day-content" id="content-donnerstag"></div>
       </div>
 
-      <div class="block-ausbildung">
-        <ui5-button design="Transparent" icon="education" onclick="toggleContent('content-ausbildung', 'block-ausbildung')">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
+      <div class="float-box block-freitag">
+        <ui5-button design="Attention" icon="calendar" onclick="toggleContent('content-freitag')">Freitag</ui5-button>
+        <div class="day-content" id="content-freitag"></div>
+      </div>
+
+      <div class="float-box block-ausbildung">
+        <ui5-button design="Transparent" icon="education" onclick="toggleContent('content-ausbildung')">AUSBILDUNG</ui5-button>
         <div class="day-content" id="content-ausbildung">
           <strong>SAP bietet zahlreiche Ausbildungsmöglichkeiten</strong> – von dualen Studiengängen über klassische Ausbildungen bis hin zu internationalen Trainee-Programmen.<br><br>
           <strong>Bereiche sind z.B.:</strong>
@@ -194,10 +135,6 @@
           Weitere Infos unter: <a href="https://www.sap.com/germany/about/careers/students-graduates/vocational-training.html" target="_blank">SAP Ausbildung & Studium</a>
         </div>
       </div>
-    </div>
-
-    <div class="footer">
-      <p>&copy; 2025 SAP AG. Alle Rechte vorbehalten.</p>
     </div>
   </body>
 </html>
