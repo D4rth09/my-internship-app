@@ -76,22 +76,118 @@
         font-weight: bold;
         border: none;
       }
+
+      .info-text {
+        display: none;
+        text-align: center;
+        font-size: 1.2rem;
+        margin-top: 2rem;
+      }
+
+      .visible {
+        display: block;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .zurueck-wrapper {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .zurueck-button {
+        background-color: #3f51b5;
+        color: white;
+        border-radius: 2rem;
+        padding: 0.7rem 2rem;
+        font-weight: bold;
+        border: none;
+      }
     </style>
   </head>
   <body>
     <div class="header">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/UI5_logo.png" alt="UI5 Logo" />
+      <img src="https://community.sap.com/legacyfs/online/storage/blog_attachments/2020/12/SAPUI5_orange_vertical.png" alt="UI5 Logo" />
       <h1>Dokumentation Praktikum SAP</h1>
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
     </div>
 
-    <div class="button-wrapper">
-      <ui5-button class="tag-button montag">Montag</ui5-button>
-      <ui5-button class="tag-button dienstag">Dienstag</ui5-button>
-      <ui5-button class="tag-button mittwoch">Mittwoch</ui5-button>
-      <ui5-button class="tag-button donnerstag">Donnerstag</ui5-button>
-      <ui5-button class="tag-button freitag">Freitag</ui5-button>
-      <ui5-button class="ausbildung">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
+    <div class="button-wrapper" id="buttonArea">
+      <ui5-button class="tag-button montag" data-target="montag-text">Montag</ui5-button>
+      <ui5-button class="tag-button dienstag" data-target="dienstag-text">Dienstag</ui5-button>
+      <ui5-button class="tag-button mittwoch" data-target="mittwoch-text">Mittwoch</ui5-button>
+      <ui5-button class="tag-button donnerstag" data-target="donnerstag-text">Donnerstag</ui5-button>
+      <ui5-button class="tag-button freitag" data-target="freitag-text">Freitag</ui5-button>
+      <ui5-button class="ausbildung" data-target="ausbildung-text">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
     </div>
+
+    <div id="infoTexts">
+      <div id="montag-text" class="info-text">Ich bin angekommen dann ging es zur Security und dann zu meinem Arbeitsplatz. danach habe ich meinen Laptopt Eingerichtet und grundlagen im progammiren gemacht</div>
+      <div id="dienstag-text" class="info-text"> Dienstag Habe ich angefangen diese website mit UI5-webcomponents zu progammiren .</div>
+      <div id="mittwoch-text" class="info-text">Mittwoch habe ich die Webite nochmal angepasst und so gut wie Fertig gestellt.Außerdem habe ich an Besprechungen teilgenommen</div>
+      <div id="donnerstag-text" class="info-text">. Kommt noch</div>
+      <div id="freitag-text" class="info-text">kommt noch</div>
+      <div id="ausbildung-text" class="info-text">Während meines Praktikums bei SAP konnte ich spannende Einblicke in verschiedene Ausbildungsrichtungen gewinnen. SAP bildet z. B. aus in:
+
+        IT-Entwicklung & Programmierung
+        
+        Prozess- und Datenanalyse
+        
+        Cloud-Technologien & Systemintegration
+        
+        Besonders interessant fand ich, wie man mit SAP-Software reale Unternehmensprozesse digital abbilden kann.
+        SAP bietet verschiedene Ausbildungsmöglichkeiten im Bereich IT und Wirtschaft. Dazu gehören:
+
+        Fachinformatiker:in für Anwendungsentwicklung
+        
+        Kaufmann/-frau für Digitalisierungsmanagement
+        
+        Duales Studium (z. B. Wirtschaftsinformatik)
+        
+        Du lernst hier moderne Technologien kennen, arbeitest an echten Projekten mit und bekommst einen Einblick in die Welt der Unternehmenssoftware.
+        
+        </div>
+    </div>
+
+    <div class="zurueck-wrapper hidden" id="zurueckWrapper">
+      <ui5-button class="zurueck-button" id="zurueckButton">Zurück</ui5-button>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll("ui5-button[data-target]");
+      const allTexts = document.querySelectorAll(".info-text");
+      const buttonWrapper = document.getElementById("buttonArea");
+      const zurueckWrapper = document.getElementById("zurueckWrapper");
+      const zurueckButton = document.getElementById("zurueckButton");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          buttonWrapper.classList.add("hidden");
+          zurueckWrapper.classList.remove("hidden");
+
+          allTexts.forEach((txt) => txt.classList.remove("visible"));
+
+          const targetId = button.getAttribute("data-target");
+          const textDiv = document.getElementById(targetId);
+          if (textDiv) {
+            textDiv.classList.add("visible");
+          }
+        });
+      });
+
+      zurueckButton.addEventListener("click", () => {
+        allTexts.forEach((txt) => txt.classList.remove("visible"));
+        buttonWrapper.classList.remove("hidden");
+        zurueckWrapper.classList.add("hidden");
+      });
+    </script>
   </body>
 </html>
+<div class="footer">
+  <p>&copy; 2025 SAP AG. Alle Rechte vorbehalten.</p>
+</div>
+</body>
+</html>
+
