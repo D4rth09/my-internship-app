@@ -1,199 +1,194 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <title> Praktikum </title>
-    <script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-      }
+<head>
+<meta charset="UTF-8" />
+<title>Dokumentation Praktikum SAP</title>
+<script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
+<style>
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+}
 
-      .header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        margin-top: 2rem;
-      }
+.header {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 2rem;
+margin-top: 2rem;
+}
 
-      .header img {
-        height: 80px;
-      }
+.header img {
+height: 80px;
+}
 
-      h1 {
-        font-size: 2rem;
-        margin: 0;
-      }
+h1 {
+font-size: 2rem;
+margin: 0;
+}
 
-      .button-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        margin: 4rem;
-        justify-content: center;
-        align-items: center;
-      }
+.button-wrapper {
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
+margin: 4rem;
+justify-content: center;
+align-items: center;
+}
 
-      .tag-button {
-        border-radius: 2rem;
-        padding: 0.7rem 2rem;
-        font-weight: bold;
-        border: none;
-      }
+.tag-button {
+border-radius: 2rem;
+padding: 0.7rem 2rem;
+font-weight: bold;
+border: none;
+}
 
-      .montag {
-        background-color: #ff3b3b;
-        color: white;
-      }
+.montag {
+background-color: #ff3b3b;
+color: white;
+}
 
-      .dienstag {
-        background-color: #ffe162;
-        color: black;
-      }
+.dienstag {
+background-color: #ffe162;
+color: black;
+}
 
-      .mittwoch {
-        background-color: #29a8ff;
-        color: black;
-      }
+.mittwoch {
+background-color: #29a8ff;
+color: black;
+}
 
-      .donnerstag {
-        background-color: #17c964;
-        color: black;
-      }
+.donnerstag {
+background-color: #17c964;
+color: black;
+}
 
-      .freitag {
-        background-color: #ff944d;
-        color: black;
-      }
+.freitag {
+background-color: #ff944d;
+color: black;
+}
 
-      .ausbildung {
-        background: linear-gradient(to right, #000000, #666666);
-        color: white;
-        border-radius: 2rem;
-        padding: 1rem 2.5rem;
-        font-weight: bold;
-        border: none;
-      }
+.ausbildung {
+background: linear-gradient(to right, #000000, #666666);
+color: white;
+border-radius: 2rem;
+padding: 1rem 2.5rem;
+font-weight: bold;
+border: none;
+}
 
-      .info-text {
-        display: none;
-        text-align: center;
-        font-size: 1.2rem;
-        margin-top: 2rem;
-      }
+.info-text {
+display: none;
+text-align: center;
+font-size: 1.2rem;
+margin: 2rem;
+}
 
-      .visible {
-        display: block;
-      }
+.visible {
+display: block;
+}
 
-      .hidden {
-        display: none;
-      }
+.hidden {
+display: none;
+}
 
-      .zurueck-wrapper {
-        text-align: center;
-        margin-top: 2rem;
-      }
+.zurueck-wrapper {
+text-align: center;
+margin-top: 2rem;
+}
 
-      .zurueck-button {
-        background-color: #3f51b5;
-        color: white;
-        border-radius: 2rem;
-        padding: 0.7rem 2rem;
-        font-weight: bold;
-        border: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="header">
-      <img src="https://community.sap.com/legacyfs/online/storage/blog_attachments/2020/12/SAPUI5_orange_vertical.png" alt="UI5 Logo" />
-      <h1>Dokumentation Praktikum SAP</h1>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
-    </div>
+.zurueck-button {
+background-color: #3f51b5;
+color: white;
+border-radius: 2rem;
+padding: 0.7rem 2rem;
+font-weight: bold;
+border: none;
+}
 
-    <div class="button-wrapper" id="buttonArea">
-      <ui5-button class="tag-button montag" data-target="montag-text">Montag</ui5-button>
-      <ui5-button class="tag-button dienstag" data-target="dienstag-text">Dienstag</ui5-button>
-      <ui5-button class="tag-button mittwoch" data-target="mittwoch-text">Mittwoch</ui5-button>
-      <ui5-button class="tag-button donnerstag" data-target="donnerstag-text">Donnerstag</ui5-button>
-      <ui5-button class="tag-button freitag" data-target="freitag-text">Freitag</ui5-button>
-      <ui5-button class="ausbildung" data-target="ausbildung-text">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
-    </div>
-    <div id="montag-text" class="info-text">
-      Am Montag habe ich das Unternehmen kennengelernt.<br />
-      Ich habe meinen Arbeitsplatz eingerichtet und meinen Laptop bekommen.
-      
-      <div class="image-grid">
-      <img src="IMG_0776.jpeg" alt="Mein Arbeitsplatz bei SAP" />
-      <img src="Githubsetup.png" alt="Githubsetup" />
-      <img src="bild3.jpeg" alt="Drittes Bild" />
-      <img src="bild4.jpeg" alt="Viertes Bild" />
-      </div>
-      <div id="dienstag-text" class="info-text"> Dienstag Habe ich angefangen diese website mit UI5-webcomponents zu progammiren .</div>
-      <div id="mittwoch-text" class="info-text">Mittwoch habe ich die Webite nochmal angepasst und so gut wie Fertig gestellt.Außerdem habe ich an Besprechungen teilgenommen</div>
-      <div id="donnerstag-text" class="info-text">. Kommt noch</div>
-      <div id="freitag-text" class="info-text">kommt noch</div>
-      <div id="ausbildung-text" class="info-text">Während meines Praktikums bei SAP konnte ich spannende Einblicke in verschiedene Ausbildungsrichtungen gewinnen. SAP bildet z. B. aus in:
+.image-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1rem;
+justify-content: center;
+margin-top: 2rem;
+}
 
-        IT-Entwicklung & Programmierung
-        
-        Prozess- und Datenanalyse
-        
-        Cloud-Technologien & Systemintegration
-        
-        Besonders interessant fand ich, wie man mit SAP-Software reale Unternehmensprozesse digital abbilden kann.
-        SAP bietet verschiedene Ausbildungsmöglichkeiten im Bereich IT und Wirtschaft. Dazu gehören:
-
-        Fachinformatiker:in für Anwendungsentwicklung
-        
-        Kaufmann/-frau für Digitalisierungsmanagement
-        
-        Duales Studium (z.B. Wirtschaftsinformatik)
-        
-        Du lernst hier moderne Technologien kennen, arbeitest an echten Projekten mit und bekommst einen Einblick in die Welt der Unternehmenssoftware.
-        
-        </div>
-    </div>
-
-    <div class="zurueck-wrapper hidden" id="zurueckWrapper">
-      <ui5-button class="zurueck-button" id="zurueckButton">Zurück</ui5-button>
-    </div>
-
-    <script>
-      const buttons = document.querySelectorAll("ui5-button[data-target]");
-      const allTexts = document.querySelectorAll(".info-text");
-      const buttonWrapper = document.getElementById("buttonArea");
-      const zurueckWrapper = document.getElementById("zurueckWrapper");
-      const zurueckButton = document.getElementById("zurueckButton");
-
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          buttonWrapper.classList.add("hidden");
-          zurueckWrapper.classList.remove("hidden");
-
-          allTexts.forEach((txt) => txt.classList.remove("visible"));
-
-          const targetId = button.getAttribute("data-target");
-          const textDiv = document.getElementById(targetId);
-          if (textDiv) {
-            textDiv.classList.add("visible");
-          }
-        });
-      });
-
-      zurueckButton.addEventListener("click", () => {
-        allTexts.forEach((txt) => txt.classList.remove("visible"));
-        buttonWrapper.classList.remove("hidden");
-        zurueckWrapper.classList.add("hidden");
-      });
-    </script>
-  </body>
-</html>
-<div class="footer">
-  <p>&copy; 2025 SAP AG. Alle Rechte vorbehalten.</p>
+.image-grid img {
+width: 100%;
+max-width: 300px;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+</style>
+</head>
+<body>
+<div class="header">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/74/UI5_logo.png" alt="UI5 Logo" />
+<h1>Dokumentation Praktikum SAP</h1>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
 </div>
+
+<div class="button-wrapper" id="buttonArea">
+<ui5-button class="tag-button montag" data-target="montag-text">Montag</ui5-button>
+<ui5-button class="tag-button dienstag" data-target="dienstag-text">Dienstag</ui5-button>
+<ui5-button class="tag-button mittwoch" data-target="mittwoch-text">Mittwoch</ui5-button>
+<ui5-button class="tag-button donnerstag" data-target="donnerstag-text">Donnerstag</ui5-button>
+<ui5-button class="tag-button freitag" data-target="freitag-text">Freitag</ui5-button>
+<ui5-button class="ausbildung" data-target="ausbildung-text">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
+</div>
+
+<div id="infoTexts">
+<div id="montag-text" class="info-text">
+<p>Am Montag habe ich das Unternehmen kennengelernt.<br />
+Ich habe meinen Arbeitsplatz eingerichtet und meinen Laptop bekommen.</p>
+
+<div class="image-grid">
+<img src="IMG_0776.jpeg" alt="Mein Arbeitsplatz bei SAP" />
+<img src="bild2.jpeg" alt="Zweites Bild" />
+<img src="bild3.jpeg" alt="Drittes Bild" />
+<img src="bild4.jpeg" alt="Viertes Bild" />
+</div>
+</div>
+
+<div id="dienstag-text" class="info-text">Dienstag war ich in der IT-Abteilung.</div>
+<div id="mittwoch-text" class="info-text">Mittwoch durfte ich selbst programmieren.</div>
+<div id="donnerstag-text" class="info-text">Am Donnerstag war ein Workshop über SAP.</div>
+<div id="freitag-text" class="info-text">Freitag habe ich mein Projekt vorgestellt.</div>
+<div id="ausbildung-text" class="info-text">SAP bietet Ausbildungen in IT, Beratung und Entwicklung.</div>
+</div>
+
+<div class="zurueck-wrapper hidden" id="zurueckWrapper">
+<ui5-button class="zurueck-button" id="zurueckButton">Zurück</ui5-button>
+</div>
+
+<script>
+const buttons = document.querySelectorAll("ui5-button[data-target]");
+const allTexts = document.querySelectorAll(".info-text");
+const buttonWrapper = document.getElementById("buttonArea");
+const zurueckWrapper = document.getElementById("zurueckWrapper");
+const zurueckButton = document.getElementById("zurueckButton");
+
+buttons.forEach((button) => {
+button.addEventListener("click", () => {
+buttonWrapper.classList.add("hidden");
+zurueckWrapper.classList.remove("hidden");
+
+allTexts.forEach((txt) => txt.classList.remove("visible"));
+
+const targetId = button.getAttribute("data-target");
+const textDiv = document.getElementById(targetId);
+if (textDiv) {
+textDiv.classList.add("visible");
+}
+});
+});
+
+zurueckButton.addEventListener("click", () => {
+allTexts.forEach((txt) => txt.classList.remove("visible"));
+buttonWrapper.classList.remove("hidden");
+zurueckWrapper.classList.add("hidden");
+});
+</script>
 </body>
 </html>
