@@ -122,15 +122,15 @@
       <ui5-button class="tag-button freitag" data-target="freitag-text">Freitag</ui5-button>
       <ui5-button class="ausbildung" data-target="ausbildung-text">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
     </div>
-
-    <div id="infoTexts">
-      <div id="montag-text" class="info-text">
-        Am Montag habe ich das Unternehmen kennengelernt.<br />
-        Ich habe meinen Arbeitsplatz eingerichtet und meinen Laptop bekommen.
-        <br /><br />
-        <img src="IMG_0776.jpeg" alt="Mein Arbeitsplatz bei SAP" style="max-width: 90%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); margin-top: 1rem;" />
-        </div>
-        
+    <div id="montag-text" class="info-text">
+      Am Montag habe ich das Unternehmen kennengelernt.<br />
+      Ich habe meinen Arbeitsplatz eingerichtet und meinen Laptop bekommen.
+      
+      <div class="image-grid">
+      <img src="IMG_0776.jpeg" alt="Mein Arbeitsplatz bei SAP" />
+      <img src="bild2.jpeg" alt="Zweites Bild" />
+      <img src="bild3.jpeg" alt="Drittes Bild" />
+      <img src="bild4.jpeg" alt="Viertes Bild" />
       </div>
       <div id="dienstag-text" class="info-text"> Dienstag Habe ich angefangen diese website mit UI5-webcomponents zu progammiren .</div>
       <div id="mittwoch-text" class="info-text">Mittwoch habe ich die Webite nochmal angepasst und so gut wie Fertig gestellt.Außerdem habe ich an Besprechungen teilgenommen</div>
@@ -197,4 +197,17 @@
 </div>
 </body>
 </html>
-
+.image-grid {
+  > display: flex;
+  > flex-wrap: wrap;
+  > justify-content: center;
+  > gap: 1rem;
+  > margin-top: 1.5rem;
+  > }
+  >
+  > .image-grid img {
+  > width: 100%;
+  > max-width: 300px;
+  > border-radius: 10px;
+  > box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  > }
