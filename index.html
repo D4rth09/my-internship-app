@@ -4,137 +4,94 @@
     <meta charset="UTF-8" />
     <title>Dokumentation Praktikum SAP</title>
     <script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: #ffffff;
         margin: 0;
-        padding: 0;
+        font-family: Arial, sans-serif;
       }
 
-      ui5-bar {
-        background-color: #354a5f;
-        color: white;
-        padding: 0.5rem;
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
       }
 
-      .float-container {
-        width: 100%;
-        overflow: hidden;
-        padding: 2rem;
+      .header img {
+        height: 80px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      .button-wrapper {
         display: flex;
         flex-wrap: wrap;
+        gap: 2rem;
+        margin: 4rem;
         justify-content: center;
-        gap: 1.5rem;
+        align-items: center;
       }
 
-      .float-box {
-        width: 300px;
-        min-height: 220px;
-        padding: 1rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        box-sizing: border-box;
-      }
-
-      .float-box:hover {
-        transform: scale(1.02);
-      }
-
-      /* Farben für die einzelnen Blöcke */
-      .block-montag { background-color: #fa9898; }
-      .block-dienstag { background-color: #eaeaea; }
-      .block-mittwoch { background-color: #d2e3fc; }
-      .block-donnerstag { background-color: #c3f9c8; }
-      .block-freitag { background-color: #fef3c0; }
-      .block-ausbildung { background-color: #e7e0fd; }
-
-      .day-content {
-        display: none;
-        margin-top: 1rem;
-        text-align: left;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #333;
-      }
-
-      .day-content ul {
-        padding-left: 1.2rem;
-      }
-
-      ui5-button {
-        width: 100%;
+      .tag-button {
+        border-radius: 2rem;
+        padding: 0.7rem 2rem;
         font-weight: bold;
+        border: none;
       }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        .float-box {
-          width: 90%;
-        }
+      .montag {
+        background-color: #ff3b3b;
+        color: white;
+      }
+
+      .dienstag {
+        background-color: #ffe162;
+        color: black;
+      }
+
+      .mittwoch {
+        background-color: #29a8ff;
+        color: black;
+      }
+
+      .donnerstag {
+        background-color: #17c964;
+        color: black;
+      }
+
+      .freitag {
+        background-color: #ff944d;
+        color: black;
+      }
+
+      .ausbildung {
+        background: linear-gradient(to right, #000000, #666666);
+        color: white;
+        border-radius: 2rem;
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        border: none;
       }
     </style>
-    <script>
-      function toggleContent(idToShow) {
-        const allContents = document.querySelectorAll('.day-content');
-        allContents.forEach(content => {
-          content.style.display = 'none';
-        });
-
-        const show = document.getElementById(idToShow);
-        if (show) {
-          show.style.display = 'block';
-        }
-      }
-    </script>
   </head>
   <body>
-    <ui5-bar design="Header">
-      <ui5-avatar slot="startContent" icon="home" shape="Circle"></ui5-avatar>
-      <ui5-title level="H2">Dokumentation Praktikum SAP</ui5-title>
-    </ui5-bar>
+    <div class="header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/UI5_logo.png" alt="UI5 Logo" />
+      <h1>Dokumentation Praktikum SAP</h1>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
+    </div>
 
-    <div class="float-container">
-      <div class="float-box block-montag">
-        <ui5-button design="Negative" icon="calendar" onclick="toggleContent('content-montag')">Montag</ui5-button>
-        <div class="day-content" id="content-montag"></div>
-      </div>
-
-      <div class="float-box block-dienstag">
-        <ui5-button design="Emphasized" icon="calendar" onclick="toggleContent('content-dienstag')">Dienstag</ui5-button>
-        <div class="day-content" id="content-dienstag"></div>
-      </div>
-
-      <div class="float-box block-mittwoch">
-        <ui5-button design="Default" icon="calendar" onclick="toggleContent('content-mittwoch')">Mittwoch</ui5-button>
-        <div class="day-content" id="content-mittwoch"></div>
-      </div>
-
-      <div class="float-box block-donnerstag">
-        <ui5-button design="Positive" icon="calendar" onclick="toggleContent('content-donnerstag')">Donnerstag</ui5-button>
-        <div class="day-content" id="content-donnerstag"></div>
-      </div>
-
-      <div class="float-box block-freitag">
-        <ui5-button design="Attention" icon="calendar" onclick="toggleContent('content-freitag')">Freitag</ui5-button>
-        <div class="day-content" id="content-freitag"></div>
-      </div>
-
-      <div class="float-box block-ausbildung">
-        <ui5-button design="Transparent" icon="education" onclick="toggleContent('content-ausbildung')">AUSBILDUNG</ui5-button>
-        <div class="day-content" id="content-ausbildung">
-          <strong>SAP bietet zahlreiche Ausbildungsmöglichkeiten</strong> – von dualen Studiengängen über klassische Ausbildungen bis hin zu internationalen Trainee-Programmen.<br><br>
-          <strong>Bereiche sind z.B.:</strong>
-          <ul>
-            <li>Fachinformatik (Anwendungsentwicklung/Systemintegration)</li>
-            <li>Kaufleute für Digitalisierungsmanagement</li>
-            <li>Duales Studium: Wirtschaftsinformatik, BWL, Data Science</li>
-          </ul>
-          Weitere Infos unter: <a href="https://www.sap.com/germany/about/careers/students-graduates/vocational-training.html" target="_blank">SAP Ausbildung & Studium</a>
-        </div>
-      </div>
+    <div class="button-wrapper">
+      <ui5-button class="tag-button montag">Montag</ui5-button>
+      <ui5-button class="tag-button dienstag">Dienstag</ui5-button>
+      <ui5-button class="tag-button mittwoch">Mittwoch</ui5-button>
+      <ui5-button class="tag-button donnerstag">Donnerstag</ui5-button>
+      <ui5-button class="tag-button freitag">Freitag</ui5-button>
+      <ui5-button class="ausbildung">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
     </div>
   </body>
 </html>
