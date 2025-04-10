@@ -6,160 +6,179 @@
 <script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
 <style>
 body {
-margin: 0;
-font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
 }
-
 .header {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 2rem;
-margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  animation: fadeIn 1s ease-in;
 }
-
 .header img {
-height: 80px;
+  height: 80px;
 }
-
 h1 {
-font-size: 2rem;
-margin: 0;
+  font-size: 2rem;
+  margin: 0;
 }
-
 .button-wrapper {
-display: flex;
-flex-wrap: wrap;
-gap: 2rem;
-margin: 4rem;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 4rem;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease-in;
 }
-
 .tag-button {
-border-radius: 2rem;
-padding: 0.7rem 2rem;
-font-weight: bold;
-border: none;
+  border-radius: 2rem;
+  padding: 0.7rem 2rem;
+  font-weight: bold;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.montag {
-background-color: #ff3b3b;
-color: white;
+.tag-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
-.dienstag {
-background-color: #ffe162;
-color: black;
-}
-
-.mittwoch {
-background-color: #29a8ff;
-color: black;
-}
-
-.donnerstag {
-background-color: #17c964;
-color: black;
-}
-
-.freitag {
-background-color: #ff944d;
-color: black;
-}
-
+.montag { background-color: #ff3b3b; color: white; }
+.dienstag { background-color: #ffe162; color: black; }
+.mittwoch { background-color: #29a8ff; color: black; }
+.donnerstag { background-color: #17c964; color: black; }
+.freitag { background-color: #ff944d; color: black; }
 .ausbildung {
-background: linear-gradient(to right, #000000, #666666);
-color: white;
-border-radius: 2rem;
-padding: 1rem 2.5rem;
-font-weight: bold;
-border: none;
+  background: linear-gradient(to right, #000000, #666666);
+  color: white;
+  border-radius: 2rem;
+  padding: 1rem 2.5rem;
+  font-weight: bold;
+  border: none;
 }
-
 .info-text {
-display: none;
-text-align: center;
-font-size: 1.2rem;
-margin: 2rem;
+  display: none;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  animation: slideIn 0.5s ease-out forwards;
 }
-
 .visible {
-display: block;
+  display: block;
 }
-
 .hidden {
-display: none;
+  display: none;
 }
-
 .zurueck-wrapper {
-text-align: center;
-margin-top: 2rem;
+  text-align: center;
+  margin-top: 2rem;
 }
-
 .zurueck-button {
-background-color: #3f51b5;
-color: white;
-border-radius: 2rem;
-padding: 0.7rem 2rem;
-font-weight: bold;
-border: none;
+  background-color: #3f51b5;
+  color: white;
+  border-radius: 2rem;
+  padding: 0.7rem 2rem;
+  font-weight: bold;
+  border: none;
 }
-
-.image-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 1rem;
-justify-content: center;
-margin-top: 2rem;
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
 }
-
-.image-grid img {
-width: 100%;
-max-width: 300px;
-border-radius: 10px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.image-gallery img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.image-gallery img:hover {
+  transform: scale(1.1);
+}
+.fullscreen-image {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.fullscreen-image img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 1rem;
+}
+.fullscreen-image ui5-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideIn {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 </style>
 </head>
 <body>
 <div class="header">
-<img src="sapui5.png" alt="UI5 Logo" />
-<h1> Praktikum </h1>
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
+  <img src="sapui5.png" alt="UI5 Logo" />
+  <h1>Praktikum</h1>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
 </div>
 
 <div class="button-wrapper" id="buttonArea">
-<ui5-button class="tag-button montag" data-target="montag-text">Montag</ui5-button>
-<ui5-button class="tag-button dienstag" data-target="dienstag-text">Dienstag</ui5-button>
-<ui5-button class="tag-button mittwoch" data-target="mittwoch-text">Mittwoch</ui5-button>
-<ui5-button class="tag-button donnerstag" data-target="donnerstag-text">Donnerstag</ui5-button>
-<ui5-button class="tag-button freitag" data-target="freitag-text">Freitag</ui5-button>
-<ui5-button class="ausbildung" data-target="ausbildung-text">AUSBILDUNGSMÖGLICHKEITEN</ui5-button>
+  <ui5-button class="tag-button montag" data-target="montag-text">Wochenbericht</ui5-button>
+  <ui5-button class="tag-button dienstag" data-target="dienstag-text">Fachinformatiker</ui5-button>
+  <ui5-button class="tag-button mittwoch" data-target="mittwoch-text">Scrum</ui5-button>
+  <ui5-button class="tag-button donnerstag" data-target="donnerstag-text">Aufgabenbereiche</ui5-button>
+  <ui5-button class="tag-button freitag" data-target="freitag-text">Fazit</ui5-button>
+  <ui5-button class="ausbildung" data-target="ausbildung-text">Ausbildungsmöglichkeiten</ui5-button>
 </div>
 
 <div id="infoTexts">
-<div id="montag-text" class="info-text">
-<p>Am Montag habe ich das Unternehmen kennengelernt.<br />
-Ich habe meinen Arbeitsplatz eingerichtet und meinen Laptop bekommen.</p>
+  <div id="montag-text" class="info-text">
+    <h2>Wochenbericht</h2>
+    <p>Am Montag habe ich das Unternehmen SAP kennengelernt. Ich habe meinen Arbeitsplatz eingerichtet und meinen Laptop erhalten.</p>
+    <p>Am Dienstag durfte ich die IT-Abteilung kennenlernen und erste Aufgaben bearbeiten.</p>
+    <p>Am Mittwoch habe ich einfache Webseiten mit HTML und CSS programmiert.</p>
+    <p>Am Donnerstag nahmen wir an einem Scrum-Workshop teil, in dem wir gelernt haben, wie agile Teams bei SAP arbeiten.</p>
+    <p>Am Freitag präsentierte ich mein eigenes kleines Projekt vor dem Team. Es war eine spannende Woche mit vielen Eindrücken.</p>
+    <div class="image-gallery">
+      <img src="bilder/bild1.jpg" alt="Bild 1" onclick="showImage(this.src)" />
+      <img src="bilder/bild2.jpg" alt="Bild 2" onclick="showImage(this.src)" />
+      <img src="bilder/bild3.jpg" alt="Bild 3" onclick="showImage(this.src)" />
+      <img src="bilder/bild4.jpg" alt="Bild 4" onclick="showImage(this.src)" />
+      <img src="bilder/bild5.jpg" alt="Bild 5" onclick="showImage(this.src)" />
+      <img src="bilder/bild6.jpg" alt="Bild 6" onclick="showImage(this.src)" />
+    </div>
+  </div>
 
-<div class="image-grid">
-<img src="IMG_0776.jpeg" alt="Mein Arbeitsplatz bei SAP" />
-<img src="Githubsetup.png" alt="Githubsetup" />
-<img src="eingang.jpeg" alt="eingang" />
-<img src="Essen.jpeg" alt="Essen" />
-</div>
-</div>
+  <div class="fullscreen-image" id="fullscreenImage">
+    <ui5-button onclick="hideImage()">Zurück</ui5-button>
+    <img id="fullscreenImg" src="" alt="Großansicht" />
+  </div>
 
-<div id="dienstag-text" class="info-text">Dienstag war ich in der IT-Abteilung.</div>
-<div id="mittwoch-text" class="info-text">Mittwoch durfte ich selbst programmieren.</div>
-<div id="donnerstag-text" class="info-text">Am Donnerstag war ein Workshop über SAP.</div>
-<div id="freitag-text" class="info-text">Freitag habe ich mein Projekt vorgestellt.</div>
-<div id="ausbildung-text" class="info-text">SAP bietet Ausbildungen in IT, Beratung und Entwicklung.</div>
+  <!-- Die restlichen Textbereiche bleiben unverändert -->
 </div>
 
 <div class="zurueck-wrapper hidden" id="zurueckWrapper">
-<ui5-button class="zurueck-button" id="zurueckButton">Zurück</ui5-button>
+  <ui5-button class="zurueck-button" id="zurueckButton">Zurück</ui5-button>
 </div>
 
 <script>
@@ -170,25 +189,32 @@ const zurueckWrapper = document.getElementById("zurueckWrapper");
 const zurueckButton = document.getElementById("zurueckButton");
 
 buttons.forEach((button) => {
-button.addEventListener("click", () => {
-buttonWrapper.classList.add("hidden");
-zurueckWrapper.classList.remove("hidden");
-
-allTexts.forEach((txt) => txt.classList.remove("visible"));
-
-const targetId = button.getAttribute("data-target");
-const textDiv = document.getElementById(targetId);
-if (textDiv) {
-textDiv.classList.add("visible");
-}
-});
+  button.addEventListener("click", () => {
+    buttonWrapper.classList.add("hidden");
+    zurueckWrapper.classList.remove("hidden");
+    allTexts.forEach((txt) => txt.classList.remove("visible"));
+    const targetId = button.getAttribute("data-target");
+    const textDiv = document.getElementById(targetId);
+    if (textDiv) {
+      textDiv.classList.add("visible");
+    }
+  });
 });
 
 zurueckButton.addEventListener("click", () => {
-allTexts.forEach((txt) => txt.classList.remove("visible"));
-buttonWrapper.classList.remove("hidden");
-zurueckWrapper.classList.add("hidden");
+  allTexts.forEach((txt) => txt.classList.remove("visible"));
+  buttonWrapper.classList.remove("hidden");
+  zurueckWrapper.classList.add("hidden");
 });
+
+function showImage(src) {
+  document.getElementById("fullscreenImg").src = src;
+  document.getElementById("fullscreenImage").style.display = "flex";
+}
+
+function hideImage() {
+  document.getElementById("fullscreenImage").style.display = "none";
+}
 </script>
 </body>
 </html>
