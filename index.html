@@ -1,279 +1,366 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8" />
-<title>Dokumentation Praktikum SAP</title>
-<script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
-<style>
-body {
-margin: 0;
-font-family: 'Segoe UI', sans-serif;
-background-color: #f4f6f8;
-color: #222;
-}
-.header {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 2rem;
-padding: 2rem;
-background: #ffffff;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-.header img {
-height: 60px;
-}
-h1 {
-font-size: 2rem;
-margin: 0;
-color: #0a3d62;
-}
-.button-wrapper {
-display: flex;
-flex-wrap: wrap;
-gap: 1.5rem;
-margin: 3rem auto;
-justify-content: center;
-}
-.tag-button {
-border-radius: 2rem;
-padding: 0.7rem 2rem;
-font-weight: bold;
-border: none;
-cursor: pointer;
-transition: all 0.3s ease;
-font-size: 1rem;
-}
-.tag-button:hover {
-transform: scale(1.05);
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.montag { background-color: #ff6b6b; color: white; }
-.dienstag { background-color: #ffe162; color: #333; }
-.mittwoch { background-color: #48dbfb; color: #000; }
-.donnerstag { background-color: #1dd1a1; color: white; }
-.freitag { background-color: #ff9f43; color: white; }
-.ausbildung {
-background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-color: white;
-}
-.ui5 { background-color: #0a3d62; color: white; }
-.info-text {
-display: none;
-background: #fff;
-margin: 2rem auto;
-max-width: 900px;
-border-radius: 10px;
-padding: 2rem;
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-animation: fadeIn 0.5s ease-in-out;
-}
-.info-text h2 {
-color: #0a3d62;
-margin-bottom: 1rem;
-}
-.info-text ul {
-text-align: left;
-margin: 0 auto 1rem;
-padding-left: 1.5rem;
-}
-.info-text p {
-line-height: 1.6;
-margin-bottom: 1rem;
-}
-.visible { display: block; }
-.hidden { display: none; }
-.zurueck-wrapper {
-text-align: center;
-margin-top: 2rem;
-}
-.zurueck-button {
-background-color: #3f51b5;
-color: white;
-border-radius: 2rem;
-padding: 0.7rem 2rem;
-font-weight: bold;
-border: none;
-font-size: 1rem;
-}
-.gallery {
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
-justify-content: center;
-margin-top: 1.5rem;
-}
-.gallery img {
-width: 150px;
-height: 100px;
-object-fit: cover;
-border-radius: 8px;
-cursor: pointer;
-transition: transform 0.3s ease;
-}
-.gallery img:hover {
-transform: scale(1.1);
-}
-.fullscreen {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: rgba(0, 0, 0, 0.8);
-display: none;
-align-items: center;
-justify-content: center;
-z-index: 999;
-}
-.fullscreen img {
-max-width: 90%;
-max-height: 90%;
-border-radius: 10px;
-}
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
-}
-</style>
+  <meta charset="UTF-8" />
+  <title>Praktikum bei SAP</title>
+  <script type="module" src="https://sap.github.io/ui5-webcomponents/assets/bundle.esm.js"></script>
+  <style>
+    /* ====================== INTRO SCREEN ====================== */
+    .intro-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: linear-gradient(to right, #2196f3, #21cbf3);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      z-index: 9999;
+      animation: fadeOut 2s ease 2s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* ====================== DARK MODE TOGGLE ====================== */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+    }
+
+    .theme-toggle input {
+      display: none;
+    }
+
+    .theme-toggle span {
+      cursor: pointer;
+      background: #ffffffaa;
+      border-radius: 50px;
+      padding: 0.4rem 0.9rem;
+      font-weight: bold;
+      backdrop-filter: blur(10px);
+      transition: background 0.3s ease;
+    }
+
+    body.dark {
+      background: linear-gradient(135deg, #121212, #1e1e1e);
+      color: #f0f0f0;
+    }
+
+    /* ====================== DESIGN ====================== */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .header img {
+      height: 80px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .button-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem;
+      justify-content: center;
+    }
+
+    .tag-button {
+      border-radius: 2rem;
+      padding: 0.7rem 2rem;
+      font-weight: bold;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .montag { background-color: #ff3b3b; color: white; }
+    .dienstag { background-color: #ffe162; color: black; }
+    .mittwoch { background-color: #29a8ff; color: black; }
+    .donnerstag { background-color: #17c964; color: black; }
+    .freitag { background-color: #ff944d; color: black; }
+    .ausbildung { background: linear-gradient(to right, #000000, #666666); color: white; }
+    .ui5 { background: #f5f5f5; }
+
+    .info-text {
+      display: none;
+      text-align: center;
+      font-size: 1.1rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      padding: 1rem;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ====================== HACKER MODE ====================== */
+    body.hacker {
+      background: black !important;
+      color: #00ff00 !important;
+      font-family: "Courier New", monospace;
+      animation: glitch-bg 0.3s infinite alternate;
+    }
+
+    @keyframes glitch-bg {
+      0% { background-color: black; }
+      100% { background-color: #050505; }
+    }
+
+    body.hacker .header img,
+    body.hacker .theme-toggle,
+    body.hacker .tag-button:not(.hacker-extra),
+    body.hacker .gallery img {
+      filter: grayscale(1) invert(1) brightness(1.5);
+    }
+
+    .matrix {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9998;
+      pointer-events: none;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+    }
+
+    body.hacker .matrix {
+      display: block;
+    }
+
+    .matrix canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hacker-extra {
+      background: #00ff00;
+      color: black;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
+
+<!-- INTRO SCREEN -->
+<div id="intro" class="intro-screen">
+  <h1>Willkommen zu meinem Praktikum bei SAP 🚀</h1>
+</div>
+
+<!-- DARK MODE TOGGLE -->
+<div class="theme-toggle">
+  <label>
+    <input type="checkbox" id="themeSwitch" />
+    <span>🌞 / 🌙</span>
+  </label>
+</div>
+
+<!-- HEADER -->
 <div class="header">
-<img src="sapui5.png" alt="UI5 Logo" />
-<h1>Praktikum bei </h1>
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
+  <img src="sapui5.png" alt="UI5 Logo" />
+  <h1>Praktikum bei</h1>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" />
 </div>
 
+<!-- BUTTONS -->
 <div class="button-wrapper" id="buttonArea">
-<ui5-button class="tag-button montag" data-target="montag-text">📅 Wochenbericht</ui5-button>
-<ui5-button class="tag-button dienstag" data-target="dienstag-text">💻 Fachinformatiker</ui5-button>
-<ui5-button class="tag-button mittwoch" data-target="mittwoch-text">⚙️ Scrum</ui5-button>
-<ui5-button class="tag-button donnerstag" data-target="donnerstag-text">🛠️ Aufgabenbereiche</ui5-button>
-<ui5-button class="tag-button freitag" data-target="freitag-text">✅ Fazit</ui5-button>
-<ui5-button class="tag-button ausbildung" data-target="ausbildung-text">🎓 Ausbildungsmöglichkeiten</ui5-button>
-<ui5-button class="tag-button ui5" data-target="ui5-text">
-<img src="sapui5.png" alt="UI5 Logo" style="height: 20px; vertical-align: middle; margin-right: 8px;" />Was ist UI5?
-</ui5-button>
+  <ui5-button class="tag-button montag" data-target="montag-text">📅 Wochenbericht</ui5-button>
+  <ui5-button class="tag-button dienstag" data-target="dienstag-text">💻 Fachinformatiker</ui5-button>
+  <ui5-button class="tag-button mittwoch" data-target="mittwoch-text">⚙️ Scrum</ui5-button>
+  <ui5-button class="tag-button donnerstag" data-target="donnerstag-text">🛠️ Aufgabenbereiche</ui5-button>
+  <ui5-button class="tag-button freitag" data-target="freitag-text">✅ Fazit</ui5-button>
+  <ui5-button class="tag-button ausbildung" data-target="ausbildung-text">🎓 Ausbildungsmöglichkeiten</ui5-button>
+  <ui5-button class="tag-button ui5" data-target="ui5-text">
+    <img src="sapui5.png" alt="UI5 Logo" style="height: 20px; vertical-align: middle; margin-right: 8px;" />Was ist UI5?
+  </ui5-button>
+  <ui5-button class="tag-button hacker-extra" id="startHacker">💀 Hacker Mode</ui5-button>
 </div>
 
+<!-- TEXTE -->
 <div id="infoTexts">
-<div id="montag-text" class="info-text">
-<h2>Wochenbericht</h2>
-<ul>
-<li><strong>Montag:</strong> Einführung, Arbeitsplatz einrichten</li>
-<li><strong>Dienstag:</strong>  ui5-webcomponents kennengelernt und angefangen</li>
-<li><strong>Mittwoch:</strong> HTML & CSS-Projekt</li>
-<li><strong>Donnerstag:</strong> Ich habe  struktur und efekte hinzugefügt </li>
-<li><strong>Freitag:</strong> Abschluss letzter Tag und Verabschiedung </li>
-</ul>
-<div class="gallery">
-<img src="eingang.jpeg" onclick="showFullscreen(this.src)" alt="eingang" />
-<img src="IMG_0776.jpeg" onclick="showFullscreen(this.src)" alt="Arbeitsplatz" />
-<img src="Githubsetup.png" onclick="showFullscreen(this.src)" alt="Githubsetup" />
-<img src="esenn.jpeg" onclick="showFullscreen(this.src)" alt="essen" />
-<img src="arbeiten.jpg" onclick="showFullscreen(this.src)" alt="arbeiten" />
-<img src="vscode.png" onclick="showFullscreen(this.src)" alt="vscode" />
-</div>
+  <div id="montag-text" class="info-text">
+    <h2>Wochenbericht</h2>
+    <ul>
+      <li><strong>Montag:</strong> Einführung, Arbeitsplatz einrichten</li>
+      <li><strong>Dienstag:</strong> UI5-Webcomponents kennengelernt</li>
+      <li><strong>Mittwoch:</strong> HTML & CSS-Projekt</li>
+      <li><strong>Donnerstag:</strong> Struktur & Effekte hinzugefügt</li>
+      <li><strong>Freitag:</strong> Abschluss & Präsentation</li>
+    </ul>
+    <div class="gallery">
+      <img src="eingang.jpeg" alt="eingang" />
+      <img src="IMG_0776.jpeg" alt="arbeitsplatz" />
+      <img src="Githubsetup.png" alt="github" />
+      <img src="esenn.jpeg" alt="essen" />
+      <img src="arbeiten.jpg" alt="arbeiten" />
+      <img src="vscode.png" alt="vscode" />
+    </div>
+  </div>
+
+  <div id="dienstag-text" class="info-text">
+    <h2>Fachinformatiker – Ein Beruf mit Zukunft</h2>
+    <ul>
+      <li>Ausbildungsdauer: 3 Jahre</li>
+      <li>Fachrichtungen: Systemintegration & Anwendungsentwicklung</li>
+      <li>Berufsschule + Praxis im Unternehmen</li>
+    </ul>
+  </div>
+
+  <div id="mittwoch-text" class="info-text">
+    <h2>Scrum – Agile Softwareentwicklung</h2>
+    <ul>
+      <li><strong>Sprint:</strong> Ziel in festem Zeitraum</li>
+      <li><strong>Daily:</strong> kurzes tägliches Meeting</li>
+      <li><strong>Scrum Master:</strong> achtet auf Regeln</li>
+    </ul>
+  </div>
+
+  <div id="donnerstag-text" class="info-text">
+    <h2>Aufgabenbereiche</h2>
+    <ul>
+      <li>Software entwickeln & testen</li>
+      <li>Systeme einrichten & betreuen</li>
+      <li>Kunden beraten</li>
+    </ul>
+  </div>
+
+  <div id="freitag-text" class="info-text">
+    <h2>Fazit</h2>
+    <p>Ich habe sehr viel gelernt und durfte sogar selbst etwas programmieren. SAP ist ein cooler Ausbildungsbetrieb!</p>
+  </div>
+
+  <div id="ausbildung-text" class="info-text">
+    <h2>Ausbildungsmöglichkeiten bei SAP</h2>
+    <ul>
+      <li>Fachinformatiker/in</li>
+      <li>Kaufleute für Digitalisierungsmanagement</li>
+      <li>Duales Studium</li>
+    </ul>
+  </div>
+
+  <div id="ui5-text" class="info-text">
+    <h2>Was ist UI5?</h2>
+    <p>Ein modernes Web-Framework von SAP für coole Web-Oberflächen. Läuft mit HTML, CSS & JS.</p>
+  </div>
 </div>
 
-<div id="dienstag-text" class="info-text">
-<h2>Fachinformatiker – Ein Beruf mit Zukunft</h2>
-<p>Die Ausbildung zum Fachinformatiker bei SAP ist sehr beliebt:</p>
-<ul>
-<li>Ausbildungsdauer: 3 Jahre (duales System)</li>
-<li>Fachrichtungen: Systemintegration und Anwendungsentwicklung</li>
-<li>Gehalt: 1. Jahr ca. 1.000 €, 2. Jahr ca. 1.100 €, 3. Jahr ca. 1.200 €</li>
-<li>Berufsschule + Praxis im Unternehmen</li>
-</ul>
+<!-- HACKER CANVAS -->
+<div class="matrix">
+  <canvas id="matrixCanvas"></canvas>
 </div>
 
-<div id="mittwoch-text" class="info-text">
-<h2>Scrum – Agile Softwareentwicklung</h2>
-<p>Scrum ist eine Methode, wie Teams bei SAP zusammenarbeiten:</p>
-<ul>
-<li><strong>Sprint:</strong> Ein Zeitraum (z. B. 2 Wochen), in dem ein Ziel erreicht wird</li>
-<li><strong>Daily Standup:</strong> Kurzes tägliches Team-Meeting</li>
-<li><strong>Scrum Master:</strong> Achtet auf den Prozess</li>
-<li><strong>Product Owner:</strong> Verantwortlich für die Anforderungen</li>
-<li><strong>Team:</strong> Entwickelt und testet Lösungen</li>
-</ul>
-</div>
-
-<div id="donnerstag-text" class="info-text">
-<h2>Aufgabenbereiche</h2>
-<ul>
-<li>Programmieren und Software entwickeln</li>
-<li>Fehler suchen und Lösungen finden</li>
-<li>Systeme installieren, einrichten und betreuen</li>
-<li>Mit Kunden kommunizieren und beraten</li>
-</ul>
-</div>
-
-<div id="freitag-text" class="info-text">
-<h2>Fazit</h2>
-<p>Mein Praktikum war sehr spannend. Ich habe viel über Technik, Teamarbeit und moderne Arbeitsweisen gelernt. Besonders cool war, dass ich kleine Aufgaben selbst machen durfte. SAP ist ein super Ausbildungsbetrieb!</p>
-</div>
-
-<div id="ausbildung-text" class="info-text">
-<h2>Ausbildungsmöglichkeiten bei SAP</h2>
-<p>Bei SAP kann man viele Berufe lernen – besonders im IT-Bereich:</p>
-<ul>
-<li>Fachinformatiker/in für Anwendungsentwicklung</li>
-<li>Fachinformatiker/in für Systemintegration</li>
-<li>Kaufleute für Digitalisierungsmanagement</li>
-<li>Duale Studiengänge (z. B. Wirtschaftsinformatik)</li>
-</ul>
-<p>Es gibt moderne Arbeitsplätze, coole Projekte und viele Lernmöglichkeiten!</p>
-</div>
-
-<div id="ui5-text" class="info-text">
-<h2>Was ist UI5?</h2>
-<p><strong>UI5</strong> ist ein modernes Web-Framework, das von SAP entwickelt wurde. Es wird genutzt, um professionelle und responsive Benutzeroberflächen für Webanwendungen zu erstellen.</p>
-<ul>
-<li>Basierend auf Webstandards wie HTML5, CSS und JavaScript</li>
-<li>Unterstützt moderne Designprinzipien wie SAP Fiori</li>
-<li>Kommt in vielen SAP-Produkten und -Projekten zum Einsatz</li>
-<li>UI5 Web Components sind eine leichtgewichtige Variante für moderne Webseiten</li>
-</ul>
-<p>Mit UI5 Web Components kannst du schnell schicke Buttons, Layouts und Dialoge erstellen – wie in dieser Präsentation!</p>
-</div>
-</div>
-
-<div class="zurueck-wrapper hidden" id="zurueckWrapper">
-<ui5-button class="zurueck-button" id="zurueckButton">Zurück</ui5-button>
-</div>
-
-<div id="fullscreenContainer" class="fullscreen" onclick="this.style.display='none'">
-<img id="fullscreenImage" src="" alt="Vollbild" />
-</div>
-
+<!-- JAVASCRIPT -->
 <script>
-const buttons = document.querySelectorAll("ui5-button[data-target]");
-const allTexts = document.querySelectorAll(".info-text");
-const buttonWrapper = document.getElementById("buttonArea");
-const zurueckWrapper = document.getElementById("zurueckWrapper");
-const zurueckButton = document.getElementById("zurueckButton");
+  // Button Klick -> Text anzeigen
+  const buttons = document.querySelectorAll("ui5-button[data-target]");
+  const allTexts = document.querySelectorAll(".info-text");
 
-buttons.forEach(button => {
-button.addEventListener("click", () => {
-buttonWrapper.classList.add("hidden");
-zurueckWrapper.classList.remove("hidden");
-allTexts.forEach(t => t.classList.remove("visible"));
-document.getElementById(button.getAttribute("data-target")).classList.add("visible");
-});
-});
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      allTexts.forEach((txt) => txt.classList.remove("visible"));
+      const targetId = button.getAttribute("data-target");
+      const textDiv = document.getElementById(targetId);
+      if (textDiv) {
+        textDiv.classList.add("visible");
+      }
+    });
+  });
 
-zurueckButton.addEventListener("click", () => {
-allTexts.forEach(t => t.classList.remove("visible"));
-buttonWrapper.classList.remove("hidden");
-zurueckWrapper.classList.add("hidden");
-});
+  // Dark Mode
+  const themeSwitch = document.getElementById('themeSwitch');
+  themeSwitch.addEventListener('change', () => {
+    document.body.classList.toggle('dark');
+  });
 
-function showFullscreen(src) {
-const fullscreen = document.getElementById("fullscreenContainer");
-document.getElementById("fullscreenImage").src = src;
-fullscreen.style.display = "flex";
-}
+  // Splash-Screen
+  setTimeout(() => {
+    document.getElementById('intro').style.display = 'none';
+  }, 2500);
+
+  // Hacker Mode
+  document.getElementById('startHacker').addEventListener('click', () => {
+    document.body.classList.toggle('hacker');
+    startMatrix();
+  });
+
+  function startMatrix() {
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = "01";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 50);
+  }
 </script>
 </body>
 </html>
+
+
